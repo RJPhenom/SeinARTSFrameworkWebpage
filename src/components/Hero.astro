@@ -1,0 +1,202 @@
+---
+const DOCS_URL = 'https://docs.seinarts.gg';
+const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
+---
+
+<section class="hero">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <div class="content">
+    <div class="wordmark-wrap">
+      <img
+        src="/branding/SeinARTSWordmark.svg"
+        alt="SeinARTS Framework"
+        class="wordmark"
+        height="38"
+      />
+    </div>
+
+    <p class="tagline">
+      A deterministic lockstep RTS framework<br />for Unreal Engine&nbsp;5.
+    </p>
+
+    <div class="ctas">
+      <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 6h16M4 10h16M4 14h10M4 18h7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+        </svg>
+        Docs
+      </a>
+      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.607.069-.607 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10Z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
+
+    <p class="meta-badge">Unreal Engine 5 &nbsp;·&nbsp; Open Source</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: calc(var(--nav-h) + 3rem) 2rem 5rem;
+  }
+
+  /* Dot grid background */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    );
+    background-size: 36px 36px;
+    mask-image: radial-gradient(
+      ellipse 85% 85% at 50% 50%,
+      black 30%,
+      transparent 100%
+    );
+  }
+
+  /* Ambient color wash */
+  .bg-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 55% 45% at 25% 65%,
+        rgba(255, 0, 0, 0.055) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 55% 45% at 75% 35%,
+        rgba(0, 149, 255, 0.065) 0%,
+        transparent 70%
+      );
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 620px;
+  }
+
+  .logo-wrap {
+    margin-bottom: 0.25rem;
+  }
+
+  .logo {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    animation: float 7s ease-in-out infinite;
+    filter: drop-shadow(0 0 24px rgba(255, 0, 0, 0.25))
+      drop-shadow(0 0 48px rgba(0, 149, 255, 0.15));
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .wordmark-wrap {
+    line-height: 1;
+  }
+
+  .wordmark {
+    height: 102px;
+    width: auto;
+    display: block;
+  }
+
+  .tagline {
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    color: var(--text-muted);
+    font-weight: 400;
+    line-height: 1.75;
+    max-width: 440px;
+  }
+
+  .ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.925rem;
+    font-weight: 600;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+    transition:
+      opacity 0.2s,
+      transform 0.15s,
+      box-shadow 0.2s;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: var(--white);
+    box-shadow: 0 0 0 0 rgba(0, 149, 255, 0);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 8px 24px rgba(0, 149, 255, 0.3);
+    opacity: 0.92;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .meta-badge {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.22);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 0.25rem;
+  }
+</style>

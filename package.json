@@ -1,0 +1,14 @@
+{
+  "name": "seinarts-landing",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "node scripts/setup.js && astro dev",
+    "build": "node scripts/setup.js && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}

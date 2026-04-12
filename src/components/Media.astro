@@ -1,0 +1,135 @@
+---
+const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
+---
+
+<section class="media" id="media">
+  <div class="inner">
+    <div class="section-header">
+      <span class="label">Media</span>
+      <h2>See it in action</h2>
+    </div>
+
+    <div class="placeholder">
+      <div class="placeholder-content">
+        <svg
+          class="placeholder-icon"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <rect x="2" y="4" width="20" height="14" rx="2.5" stroke="currentColor" stroke-width="1.25"/>
+          <path d="M9.5 9L15.5 12L9.5 15V9Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+          <path d="M8 21H16" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+          <path d="M12 18V21" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+        <p class="placeholder-text">Screenshots &amp; video coming soon.</p>
+        <p class="placeholder-sub">
+          Follow progress on the{' '}
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub repo</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+  To add screenshots: replace the placeholder div above with an image grid, e.g.:
+
+  <div class="screenshot-grid">
+    <img src="/media/screenshot-1.png" alt="…" />
+    <img src="/media/screenshot-2.png" alt="…" />
+  </div>
+-->
+
+<style>
+  .media {
+    padding: 6rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .placeholder {
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+  }
+
+  .placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .placeholder-icon {
+    color: rgba(255, 255, 255, 0.18);
+    margin-bottom: 0.25rem;
+  }
+
+  .placeholder-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .placeholder-sub {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.22);
+  }
+
+  .placeholder-sub a {
+    color: var(--blue);
+    transition: opacity 0.2s;
+  }
+
+  .placeholder-sub a:hover {
+    opacity: 0.75;
+  }
+
+  /* Screenshot grid — used when replacing the placeholder */
+  .screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 1rem;
+  }
+
+  .screenshot-grid img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: block;
+  }
+</style>

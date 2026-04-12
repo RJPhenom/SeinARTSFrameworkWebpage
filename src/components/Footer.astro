@@ -1,0 +1,122 @@
+---
+const DOCS_URL = 'https://docs.seinarts.gg';
+const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
+const PHENOM_URL = 'https://github.com/RJPhenom';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="inner">
+    <nav class="links" aria-label="Footer navigation">
+      <a href="/#features">Features</a>
+      <a href="/#changelog">Changelog</a>
+      <a href={DOCS_URL} target="_blank" rel="noopener noreferrer">Docs</a>
+      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+
+    <div class="bottom">
+      <a href={PHENOM_URL} target="_blank" rel="noopener noreferrer" class="phenom-link" aria-label="Phenom on GitHub">
+        <img
+          src="/branding/PhenomWordmark.svg"
+          alt="Phenom"
+          class="phenom-wordmark"
+          height="34"
+        />
+      </a>
+      <span class="sep" aria-hidden="true">·</span>
+      <p class="copy">&copy; {year}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+  }
+
+  .inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .wordmark {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  .sep {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  .copy {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .links {
+    display: flex;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .links a {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .links a:hover {
+    color: var(--white);
+  }
+
+  .phenom-link {
+    display: flex;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+
+  .phenom-link:hover {
+    opacity: 0.7;
+  }
+
+  .phenom-wordmark {
+    height: 34px;
+    width: auto;
+    display: block;
+    position: relative;
+    top: -1px;
+  }
+
+  @media (max-width: 640px) {
+    .bottom {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .sep {
+      display: none;
+    }
+  }
+</style>
