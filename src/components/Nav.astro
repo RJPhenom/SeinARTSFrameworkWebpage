@@ -3,10 +3,10 @@ const DOCS_URL = 'https://docs.seinarts.gg';
 const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
 ---
 
-<nav>
+<nav class="nav-hidden">
   <div class="inner">
     <a href="/" class="wordmark" aria-label="SeinARTS Framework Home">
-      <img src="/branding/SeinARTSWordmark.svg" alt="SeinARTS Framework" height="24" />
+      <img src="/branding/SeinARTSWordmark.svg" alt="SeinARTS Framework" />
     </a>
     <ul class="links" role="list">
       <li><a href="/#features">Features</a></li>
@@ -37,6 +37,14 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  nav.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .inner {
@@ -51,6 +59,11 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
 
   .wordmark img {
     display: block;
+    height: 32px;
+    width: auto;
+    margin: 2px 0;
+    position: relative;
+    top: -3px;
     transition: opacity 0.2s;
   }
 
@@ -108,3 +121,16 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     }
   }
 </style>
+
+<script>
+  const nav = document.querySelector('nav');
+  function onScroll() {
+    if (window.scrollY >= 250) {
+      nav?.classList.add('visible');
+    } else {
+      nav?.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

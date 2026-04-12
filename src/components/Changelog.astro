@@ -1,20 +1,31 @@
 ---
 const RELEASES_URL = 'https://github.com/RJPhenom/SeinARTSFramework/releases';
+const GITHUB_API = 'https://api.github.com/repos/RJPhenom/SeinARTSFramework/releases';
 
-// Add future releases to the top of this array.
-const releases = [
-  {
-    version: '0.1.0',
-    date: '2026-04-01',
-    tag: 'Initial Release',
-    notes: [
-      'Core deterministic simulation loop',
-      'Lockstep networking foundation',
-      'Command input abstraction system',
-      'Basic Unreal Engine 5 integration layer',
-    ],
-  },
-];
+interface GithubRelease {
+  tag_name: string;
+  name: string;
+  published_at: string;
+  body: string;
+  html_url: string;
+  prerelease: boolean;
+  draft: boolean;
+}
+
+let releases: GithubRelease[] = [];
+let fetchError = false;
+
+try {
+  const res = await fetch(GITHUB_API, {
+    headers: { 'Accept': 'application/vnd.github+json' },
+  });
+  if (res.ok) {
+    const data: GithubRelease[] = await res.json();
+    releases = data.filter((r) => !r.draft && !r.prerelease).slice(0, 5);
+  }
+} catch {
+  fetchError = true;
+}
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -22,6 +33,13 @@ function formatDate(iso: string) {
     month: 'long',
     day: 'numeric',
   });
+}
+
+function parseNotes(body: string): string[] {
+  return body
+    .split('\n')
+    .map((l) => l.replace(/^[-*]\s+/, '').trim())
+    .filter((l) => l.length > 0 && !l.startsWith('#'));
 }
 ---
 
@@ -33,25 +51,31 @@ function formatDate(iso: string) {
     </div>
 
     <div class="releases">
-      {
-        releases.map((r) => (
-          <div class="release">
-            <div class="release-meta">
-              <span class="version">v{r.version}</span>
-              <span class="release-tag">{r.tag}</span>
-              <time class="date" datetime={r.date}>{formatDate(r.date)}</time>
-            </div>
+      {fetchError && (
+        <p class="empty">Could not load releases at build time.</p>
+      )}
+      {!fetchError && releases.length === 0 && (
+        <p class="empty">No releases yet — check back soon.</p>
+      )}
+      {releases.map((r) => (
+        <div class="release">
+          <div class="release-meta">
+            <span class="version">{r.tag_name}</span>
+            <span class="release-tag">{r.name}</span>
+            <time class="date" datetime={r.published_at}>{formatDate(r.published_at)}</time>
+          </div>
+          {r.body && (
             <ul class="notes" role="list">
-              {r.notes.map((note) => (
+              {parseNotes(r.body).map((note) => (
                 <li>
                   <span class="bullet" aria-hidden="true" />
                   {note}
                 </li>
               ))}
             </ul>
-          </div>
-        ))
-      }
+          )}
+        </div>
+      ))}
     </div>
 
     <div class="view-all">
@@ -98,6 +122,15 @@ function formatDate(iso: string) {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 3rem;
+    border: 1px dashed rgba(255,255,255,0.08);
+    border-radius: 12px;
   }
 
   .release {

@@ -12,7 +12,7 @@ const features = [
     description:
       'Ultra-low bandwidth synchronisation purpose-built for real-time strategy at any player count.',
     accent: 'blue',
-    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 10H17M17 10L13 6M17 10L13 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 10H3M3 10L7 6M3 10L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/></svg>`,
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 10H17M17 10L13 6M17 10L13 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 10H3M3 10L7 6M3 10L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>`,
   },
   {
     title: 'Unreal Engine 5 Native',
@@ -49,7 +49,7 @@ const features = [
   <div class="inner">
     <div class="section-header">
       <span class="label">Capabilities</span>
-      <h2>Built for serious RTS development</h2>
+      <h2>Built for Unreal Engine 5 RTS development</h2>
       <p class="subtitle">
         Everything you need to build a competitive real-time strategy game on Unreal Engine 5.
       </p>
@@ -59,8 +59,10 @@ const features = [
       {
         features.map((f) => (
           <div class={`card accent-${f.accent}`}>
-            <div class={`card-icon accent-${f.accent}`} set:html={f.icon} />
-            <h3>{f.title}</h3>
+            <div class="card-header">
+              <div class={`card-icon accent-${f.accent}`} set:html={f.icon} />
+              <h3>{f.title}</h3>
+            </div>
             <p>{f.description}</p>
           </div>
         ))
@@ -156,9 +158,16 @@ const features = [
     background: var(--blue);
   }
 
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.65rem;
+  }
+
   .card-icon {
     display: flex;
-    margin-bottom: 1.1rem;
+    flex-shrink: 0;
     line-height: 1;
   }
 
@@ -174,7 +183,7 @@ const features = [
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: -0.015em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   p {
