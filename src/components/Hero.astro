@@ -4,7 +4,7 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
 ---
 
 <section class="hero">
-  <div class="bg-grid" aria-hidden="true"></div>
+  <canvas class="bg-grid" aria-hidden="true"></canvas>
   <div class="bg-glow" aria-hidden="true"></div>
 
   <div class="content">
@@ -22,13 +22,13 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     </p>
 
     <div class="ctas">
-      <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+      <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" class="btn btn-docs">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M4 6h16M4 10h16M4 14h10M4 18h7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
         </svg>
         Docs
       </a>
-      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="btn btn-github">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.607.069-.607 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10Z"/>
         </svg>
@@ -37,6 +37,10 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     </div>
 
     <p class="meta-badge">Unreal Engine 5 &nbsp;·&nbsp; Open Source</p>
+
+    <a href="/#features" class="scroll-next" aria-label="Scroll to Features section">
+      <span aria-hidden="true" class="scroll-next-arrow">↓</span>
+    </a>
   </div>
 </section>
 
@@ -55,12 +59,10 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
   .bg-grid {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.055) 1px,
-      transparent 1px
-    );
-    background-size: 36px 36px;
+    opacity: 0.9;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
     mask-image: radial-gradient(
       ellipse 85% 85% at 50% 50%,
       black 30%,
@@ -74,28 +76,76 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     inset: 0;
     background:
       radial-gradient(
-        ellipse 55% 45% at 25% 65%,
-        rgba(255, 0, 0, 0.055) 0%,
-        transparent 70%
+        ellipse 62% 58% at 108% 0%,
+        rgba(255, 0, 0, 0.095) 0%,
+        rgba(0, 149, 255, 0.078) 40%,
+        transparent 80%
       ),
       radial-gradient(
-        ellipse 55% 45% at 75% 35%,
-        rgba(0, 149, 255, 0.065) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 55% at 100% 0%,
-        rgba(255, 0, 0, 0.32) 0%,
-        rgba(0, 149, 255, 0.24) 40%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 55% at 0% 100%,
-        rgba(0, 149, 255, 0.32) 0%,
-        rgba(255, 0, 0, 0.24) 40%,
-        transparent 70%
+        ellipse 62% 58% at -8% 100%,
+        rgba(0, 149, 255, 0.085) 0%,
+        rgba(255, 0, 0, 0.06) 40%,
+        transparent 80%
       );
     pointer-events: none;
+  }
+
+  .bg-glow::before,
+  .bg-glow::after {
+    content: '';
+    position: absolute;
+    top: -12%;
+    bottom: -12%;
+    width: 38%;
+    opacity: 0.82;
+    filter: blur(18px);
+    will-change: transform, opacity;
+  }
+
+  .bg-glow::before {
+    left: -8%;
+    background: radial-gradient(
+      ellipse 72% 54% at 0% 50%,
+      rgba(0, 149, 255, 0.18) 0%,
+      rgba(255, 0, 0, 0.12) 42%,
+      transparent 78%
+    );
+    animation: glowBloomLeft 6s ease-in-out infinite;
+  }
+
+  .bg-glow::after {
+    right: -14%;
+    background: radial-gradient(
+      ellipse 78% 58% at 108% 50%,
+      rgba(255, 0, 0, 0.18) 0%,
+      rgba(0, 149, 255, 0.125) 44%,
+      transparent 84%
+    );
+    animation: glowBloomRight 6s ease-in-out infinite;
+  }
+
+  @keyframes glowBloomLeft {
+    0%,
+    100% {
+      opacity: 0.88;
+      transform: translateY(8%) scale(1);
+    }
+    50% {
+      opacity: 0.58;
+      transform: translateY(-8%) scale(1.18, 1.12);
+    }
+  }
+
+  @keyframes glowBloomRight {
+    0%,
+    100% {
+      opacity: 0.88;
+      transform: translateY(-8%) scale(1);
+    }
+    50% {
+      opacity: 0.58;
+      transform: translateY(8%) scale(1.18, 1.12);
+    }
   }
 
   .content {
@@ -160,47 +210,43 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
   .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.45rem;
-    padding: 0.65rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.925rem;
-    font-weight: 600;
-    font-family: inherit;
-    letter-spacing: 0.01em;
-    transition:
-      opacity 0.2s,
-      transform 0.15s,
-      box-shadow 0.2s;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .btn:active {
-    transform: translateY(0);
-  }
-
-  .btn-primary {
-    background: var(--blue);
-    color: var(--white);
-    box-shadow: 0 0 0 0 rgba(0, 149, 255, 0);
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 8px 24px rgba(0, 149, 255, 0.3);
-    opacity: 0.92;
-  }
-
-  .btn-outline {
+    min-width: 124px;
+    padding: 0.7rem 1.6rem;
+    border-radius: 0;
+    border: 1px solid transparent;
     background: transparent;
     color: var(--white);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.93rem;
+    font-weight: 600;
+    font-family: inherit;
+    letter-spacing: 0;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
   }
 
-  .btn-outline:hover {
-    border-color: rgba(255, 255, 255, 0.45);
-    background: rgba(255, 255, 255, 0.04);
+  .btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .btn-docs {
+    border-color: var(--red);
+  }
+
+  .btn-docs:hover {
+    background: rgba(255, 0, 0, 0.08);
+  }
+
+  .btn-github {
+    border-color: var(--blue);
+  }
+
+  .btn-github:hover {
+    background: rgba(0, 149, 255, 0.08);
   }
 
   .meta-badge {
@@ -211,4 +257,194 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     font-weight: 500;
     margin-top: 0.25rem;
   }
+
+  .scroll-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .scroll-next:hover {
+    background: rgba(128, 128, 128, 0.25);
+  }
+
+  .scroll-next-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.875rem;
+    line-height: 1;
+    animation: arrowFlash 8s ease-in-out infinite;
+  }
+
+  @keyframes arrowFlash {
+    0% {
+      color: rgba(255, 255, 255, 0.01);
+    }
+    25% {
+      color: rgba(255, 0, 0, 0.95);
+    }
+    50% {
+      color: rgba(255, 255, 255, 0.01);
+    }
+    75% {
+      color: rgba(0, 149, 255, 0.95);
+    }
+    100% {
+      color: rgba(255, 255, 255, 0.01);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-glow {
+      opacity: 0.78;
+    }
+
+    .bg-glow::before,
+    .bg-glow::after {
+      animation: none;
+      transform: none;
+      opacity: 0.72;
+    }
+
+    .scroll-next {
+      transition: background 0.2s ease;
+    }
+
+    .scroll-next-arrow {
+      animation: none;
+      color: rgba(255, 255, 255, 0.65);
+    }
+  }
+
 </style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('.hero');
+  const gridCanvas = document.querySelector<HTMLCanvasElement>('.bg-grid');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (hero && gridCanvas) {
+    const heroEl = hero;
+    const canvasEl = gridCanvas;
+    const context = canvasEl.getContext('2d');
+
+    if (context) {
+      const ctx = context;
+      const spacing = 36;
+      const baseRadius = 1;
+      const influenceRadius = 180;
+      const pullStrength = 16;
+      const driftPixelsPerMs = (36 * 3) / 26000;
+      const maxDpr = 2;
+      const pointer = {
+        x: 0,
+        y: 0,
+        active: false,
+      };
+
+      let width = 0;
+      let height = 0;
+      let devicePixelRatioValue = 1;
+      let animationFrameId = 0;
+      let dots: Array<{ x: number; y: number }> = [];
+
+      function rebuildDots() {
+        dots = [];
+
+        for (let y = -spacing; y <= height + spacing; y += spacing) {
+          for (let x = -spacing; x <= width + spacing; x += spacing) {
+            dots.push({ x, y });
+          }
+        }
+    }
+
+      function resizeCanvas() {
+        const bounds = heroEl.getBoundingClientRect();
+
+        width = bounds.width;
+        height = bounds.height;
+        devicePixelRatioValue = Math.min(window.devicePixelRatio || 1, maxDpr);
+
+        canvasEl.width = Math.round(width * devicePixelRatioValue);
+        canvasEl.height = Math.round(height * devicePixelRatioValue);
+        ctx.setTransform(devicePixelRatioValue, 0, 0, devicePixelRatioValue, 0, 0);
+
+        rebuildDots();
+      }
+
+      function updatePointer(event: PointerEvent) {
+        const bounds = heroEl.getBoundingClientRect();
+        pointer.x = event.clientX - bounds.left;
+        pointer.y = event.clientY - bounds.top;
+        pointer.active = true;
+      }
+
+      function resetPointer() {
+        pointer.active = false;
+      }
+
+      function drawFrame(timestamp: number) {
+        ctx.clearRect(0, 0, width, height);
+
+        const pulse = reduceMotion.matches ? 1 : 0.92 + Math.sin(timestamp * 0.0011) * 0.08;
+        const driftOffset = reduceMotion.matches ? 0 : (timestamp * driftPixelsPerMs) % spacing;
+
+        for (const dot of dots) {
+          let drawX = dot.x + driftOffset;
+          let drawY = dot.y + driftOffset;
+          let dotRadius = baseRadius;
+          let alpha = 0.19 * pulse;
+
+          if (pointer.active && !reduceMotion.matches) {
+            const deltaX = pointer.x - dot.x;
+            const deltaY = pointer.y - dot.y;
+            const distance = Math.hypot(deltaX, deltaY);
+
+            if (distance < influenceRadius && distance > 0.001) {
+              const falloff = 1 - distance / influenceRadius;
+              const force = falloff * falloff;
+
+              drawX += (deltaX / distance) * pullStrength * force;
+              drawY += (deltaY / distance) * pullStrength * force;
+              dotRadius += force * 0.65;
+              alpha += force * 0.22;
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(drawX, drawY, dotRadius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(alpha, 0.42)})`;
+          ctx.fill();
+        }
+
+        animationFrameId = window.requestAnimationFrame(drawFrame);
+      }
+
+      resizeCanvas();
+      animationFrameId = window.requestAnimationFrame(drawFrame);
+
+      if (!reduceMotion.matches) {
+        heroEl.addEventListener('pointermove', updatePointer, { passive: true });
+        heroEl.addEventListener('pointerleave', resetPointer, { passive: true });
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      reduceMotion.addEventListener('change', resetPointer);
+      window.addEventListener('pagehide', () => window.cancelAnimationFrame(animationFrameId), {
+        once: true,
+      });
+    }
+  }
+</script>
