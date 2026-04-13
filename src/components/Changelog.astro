@@ -88,7 +88,7 @@ function parseNotes(body: string): string[] {
 
 <style>
   .changelog {
-    padding: 6rem 2rem;
+    padding: 4.5rem 2rem;
     border-top: 1px solid var(--border);
   }
 
@@ -99,7 +99,7 @@ function parseNotes(body: string): string[] {
 
   .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2.25rem;
   }
 
   .label {
@@ -212,5 +212,15 @@ function parseNotes(body: string): string[] {
 
   .view-all-link:hover {
     color: var(--white);
+  }
+
+  @media (max-width: 768px) {
+    .changelog {
+      padding: 3.5rem 1.25rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.75rem;
+    }
   }
 </style>

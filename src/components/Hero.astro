@@ -52,7 +52,7 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: calc(var(--nav-h) + 3rem) 2rem 5rem;
+    padding: calc(var(--nav-h) + 2rem) 2rem 3.5rem;
   }
 
   /* Dot grid background */
@@ -325,6 +325,12 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     .scroll-next-arrow {
       animation: none;
       color: rgba(255, 255, 255, 0.65);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: calc(var(--nav-h) + 1.25rem) 1.25rem 2.25rem;
     }
   }
 
