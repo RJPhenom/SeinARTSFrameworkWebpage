@@ -10,7 +10,7 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
   <div class="content">
     <div class="wordmark-wrap">
       <img
-        src="/branding/SeinARTSWordmarkLarge.svg?v=20260412c"
+        src="/branding/SeinARTSWordmarkVectorized.svg?v=20260415b"
         alt="SeinARTS Framework"
         class="wordmark"
         height="38"
@@ -259,22 +259,25 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
   }
 
   .scroll-next {
+    margin-top: 1rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 72px;
-    height: 72px;
-    margin-top: 1rem;
-    border: none;
-    border-radius: 999px;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
     background: transparent;
-    color: var(--white);
+    color: var(--red);
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.2s, border-color 0.2s;
+    animation: arrowColor 3s ease-in-out infinite;
+    flex-shrink: 0;
   }
 
   .scroll-next:hover {
-    background: rgba(128, 128, 128, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.28);
   }
 
   .scroll-next-arrow {
@@ -283,26 +286,17 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     justify-content: center;
     width: 100%;
     height: 100%;
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     line-height: 1;
-    animation: arrowFlash 8s ease-in-out infinite;
   }
 
-  @keyframes arrowFlash {
-    0% {
-      color: rgba(255, 255, 255, 0.01);
-    }
-    25% {
-      color: rgba(255, 0, 0, 0.95);
+  @keyframes arrowColor {
+    0%,
+    100% {
+      color: var(--red);
     }
     50% {
-      color: rgba(255, 255, 255, 0.01);
-    }
-    75% {
-      color: rgba(0, 149, 255, 0.95);
-    }
-    100% {
-      color: rgba(255, 255, 255, 0.01);
+      color: var(--blue);
     }
   }
 
@@ -320,11 +314,12 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
 
     .scroll-next {
       transition: background 0.2s ease;
+      animation: none;
+      color: var(--red);
     }
 
     .scroll-next-arrow {
-      animation: none;
-      color: rgba(255, 255, 255, 0.65);
+      color: currentColor;
     }
   }
 
