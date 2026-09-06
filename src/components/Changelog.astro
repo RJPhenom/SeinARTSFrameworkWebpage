@@ -1,6 +1,6 @@
 ---
-const RELEASES_URL = 'https://github.com/RJPhenom/SeinARTSFramework/releases';
-const GITHUB_API = 'https://api.github.com/repos/RJPhenom/SeinARTSFramework/releases';
+import GitHubLabel from './GitHubLabel.astro';
+import { RELEASES_URL, RELEASES_API_URL } from '../config/repository';
 
 interface GithubRelease {
   tag_name: string;
@@ -16,12 +16,14 @@ let releases: GithubRelease[] = [];
 let fetchError = false;
 
 try {
-  const res = await fetch(GITHUB_API, {
+  const res = await fetch(RELEASES_API_URL, {
     headers: { 'Accept': 'application/vnd.github+json' },
   });
   if (res.ok) {
     const data: GithubRelease[] = await res.json();
     releases = data.filter((r) => !r.draft && !r.prerelease).slice(0, 5);
+  } else {
+    fetchError = true;
   }
 } catch {
   fetchError = true;
@@ -43,16 +45,15 @@ function parseNotes(body: string): string[] {
 }
 ---
 
-<section class="changelog" id="changelog">
-  <div class="inner">
+<section class="changelog section" id="changelog">
+  <div class="section-inner">
     <div class="section-header">
-      <span class="label">Changelog</span>
       <h2>Latest Releases</h2>
     </div>
 
     <div class="releases">
       {fetchError && (
-        <p class="empty">Could not load releases at build time.</p>
+        <p class="empty">Releases are temporarily unavailable.</p>
       )}
       {!fetchError && releases.length === 0 && (
         <p class="empty">No releases yet — check back soon.</p>
@@ -80,43 +81,14 @@ function parseNotes(body: string): string[] {
 
     <div class="view-all">
       <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" class="view-all-link">
-        View all releases on GitHub →
+        <GitHubLabel><span class="link-text">View all releases on GitHub</span></GitHubLabel>
+        <span aria-hidden="true">→</span>
       </a>
     </div>
   </div>
 </section>
 
 <style>
-  .changelog {
-    padding: 4.5rem 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .inner {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 2.25rem;
-  }
-
-  .label {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 1rem;
-  }
-
-  h2 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-  }
 
   .releases {
     display: flex;
@@ -130,11 +102,12 @@ function parseNotes(body: string): string[] {
     font-size: 0.9rem;
     padding: 3rem;
     background: var(--surface);
-    border: 1px dashed rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
     border-radius: 0;
   }
 
   .release {
+    overflow-wrap: anywhere;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 0;
@@ -151,8 +124,8 @@ function parseNotes(body: string): string[] {
 
   .version {
     font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    letter-spacing: 0.015em;
     color: var(--white);
   }
 
@@ -165,7 +138,7 @@ function parseNotes(body: string): string[] {
     background: rgba(255, 0, 0, 0.09);
     border: 1px solid rgba(255, 0, 0, 0.2);
     padding: 0.2rem 0.6rem;
-    border-radius: 4px;
+    border-radius: 0;
   }
 
   .date {
@@ -194,7 +167,7 @@ function parseNotes(body: string): string[] {
     flex-shrink: 0;
     width: 5px;
     height: 5px;
-    border-radius: 50%;
+    border-radius: 0;
     background: var(--blue);
     margin-top: 0.55em;
   }
@@ -205,22 +178,21 @@ function parseNotes(body: string): string[] {
   }
 
   .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.875rem;
-    color: var(--text-muted);
-    transition: color 0.2s;
+    color: var(--blue);
+    transition: color 160ms ease;
   }
 
   .view-all-link:hover {
-    color: var(--white);
+    color: var(--blue);
   }
 
-  @media (max-width: 768px) {
-    .changelog {
-      padding: 3.5rem 1.25rem;
-    }
-
-    .section-header {
-      margin-bottom: 1.75rem;
-    }
+  .view-all-link:hover .link-text {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
+
 </style>

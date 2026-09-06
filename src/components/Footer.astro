@@ -1,122 +1,45 @@
 ---
-const DOCS_URL = 'https://docs.seinarts.gg';
-const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
-const PHENOM_URL = 'https://phenomstudios.gg';
+import phenomWordmarkUrl from '../../branding/PhenomWordmark.svg?url';
+
 const year = new Date().getFullYear();
 ---
 
-<footer>
-  <div class="inner">
-    <nav class="links" aria-label="Footer navigation">
-      <a href="/#features">Features</a>
-      <a href="/#changelog">Changelog</a>
-      <a href={DOCS_URL} target="_blank" rel="noopener noreferrer">Docs</a>
-      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
-    </nav>
-
-    <div class="bottom">
-      <a href={PHENOM_URL} target="_blank" rel="noopener noreferrer" class="phenom-link" aria-label="Phenom on GitHub">
-        <img
-          src="/branding/PhenomWordmark.svg"
-          alt="Phenom"
-          class="phenom-wordmark"
-          height="34"
-        />
-      </a>
-      <span class="sep" aria-hidden="true">·</span>
-      <p class="copy">&copy; {year}. All rights reserved.</p>
-    </div>
+<footer class="site-footer">
+  <div class="phenom-credit">
+    <img src={phenomWordmarkUrl} alt="Phenom Studios" width="912" height="201" />
+    <span>&copy; {year}. All rights reserved.</span>
   </div>
 </footer>
 
 <style>
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 2rem;
-  }
-
-  .inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
+  .site-footer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    width: min(70rem, calc(100% - 2rem));
+    margin: 1.5rem auto 0;
+    padding: 0;
   }
 
-  .left {
+  .phenom-credit {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 0.6rem;
-  }
-
-  .bottom {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .wordmark {
-    height: 22px;
-    width: auto;
-    display: block;
-  }
-
-  .sep {
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.15);
-  }
-
-  .copy {
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.2);
-  }
-
-  .links {
-    display: flex;
-    gap: 1.75rem;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 0.875rem;
+    width: 100%;
+    padding-block: 0.75rem 0.25rem;
+    color: #a3a3a3;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.75;
+    text-align: center;
   }
 
-  .links a {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    transition: color 0.2s;
-  }
-
-  .links a:hover {
-    color: var(--white);
-  }
-
-  .phenom-link {
-    display: flex;
-    align-items: center;
-    opacity: 1;
-    transition: opacity 0.2s;
-  }
-
-  .phenom-link:hover {
-    opacity: 0.7;
-  }
-
-  .phenom-wordmark {
-    height: 34px;
-    width: auto;
+  .phenom-credit img {
     display: block;
-    position: relative;
-    top: -1px;
-  }
-
-  @media (max-width: 640px) {
-    .bottom {
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .sep {
-      display: none;
-    }
+    flex: none;
+    width: auto;
+    height: 1.75rem;
   }
 </style>

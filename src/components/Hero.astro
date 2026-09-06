@@ -1,6 +1,8 @@
 ---
+import GitHubLabel from './GitHubLabel.astro';
+import { GITHUB_URL } from '../config/repository';
+
 const DOCS_URL = 'https://docs.seinarts.gg';
-const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
 ---
 
 <section class="hero">
@@ -15,11 +17,11 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
         class="wordmark"
         height="38"
       />
+      <p class="brand-credit">
+        <span>By</span>
+        <img src="/branding/PhenomWordmark.svg" alt="Phenom Studios" width="912" height="201" />
+      </p>
     </div>
-
-    <p class="tagline">
-      A deterministic lockstep RTS framework<br />for Unreal Engine&nbsp;5.
-    </p>
 
     <div class="ctas">
       <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" class="btn btn-docs">
@@ -29,10 +31,7 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
         Docs
       </a>
       <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="btn btn-github">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.607.069-.607 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10Z"/>
-        </svg>
-        GitHub
+        <GitHubLabel />
       </a>
     </div>
 
@@ -59,7 +58,7 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
   .bg-grid {
     position: absolute;
     inset: 0;
-    opacity: 0.9;
+    opacity: 0.35;
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -70,82 +69,14 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     );
   }
 
-  /* Ambient color wash */
+  /* The docs homepage uses a restrained red-to-blue brand wash. */
   .bg-glow {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(
-        ellipse 62% 58% at 108% 0%,
-        rgba(255, 0, 0, 0.095) 0%,
-        rgba(0, 149, 255, 0.078) 40%,
-        transparent 80%
-      ),
-      radial-gradient(
-        ellipse 62% 58% at -8% 100%,
-        rgba(0, 149, 255, 0.085) 0%,
-        rgba(255, 0, 0, 0.06) 40%,
-        transparent 80%
-      );
+      radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.045), transparent 16rem),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.16), rgba(0, 0, 0, 0.99) 47%, rgba(0, 149, 255, 0.12));
     pointer-events: none;
-  }
-
-  .bg-glow::before,
-  .bg-glow::after {
-    content: '';
-    position: absolute;
-    top: -12%;
-    bottom: -12%;
-    width: 38%;
-    opacity: 0.82;
-    filter: blur(18px);
-    will-change: transform, opacity;
-  }
-
-  .bg-glow::before {
-    left: -8%;
-    background: radial-gradient(
-      ellipse 72% 54% at 0% 50%,
-      rgba(0, 149, 255, 0.18) 0%,
-      rgba(255, 0, 0, 0.12) 42%,
-      transparent 78%
-    );
-    animation: glowBloomLeft 6s ease-in-out infinite;
-  }
-
-  .bg-glow::after {
-    right: -14%;
-    background: radial-gradient(
-      ellipse 78% 58% at 108% 50%,
-      rgba(255, 0, 0, 0.18) 0%,
-      rgba(0, 149, 255, 0.125) 44%,
-      transparent 84%
-    );
-    animation: glowBloomRight 6s ease-in-out infinite;
-  }
-
-  @keyframes glowBloomLeft {
-    0%,
-    100% {
-      opacity: 0.88;
-      transform: translateY(8%) scale(1);
-    }
-    50% {
-      opacity: 0.58;
-      transform: translateY(-8%) scale(1.18, 1.12);
-    }
-  }
-
-  @keyframes glowBloomRight {
-    0%,
-    100% {
-      opacity: 0.88;
-      transform: translateY(-8%) scale(1);
-    }
-    50% {
-      opacity: 0.58;
-      transform: translateY(8%) scale(1.18, 1.12);
-    }
   }
 
   .content {
@@ -158,68 +89,59 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     max-width: 620px;
   }
 
-  .logo-wrap {
-    margin-bottom: 0.25rem;
-  }
-
-  .logo {
-    width: 96px;
-    height: 96px;
-    object-fit: contain;
-    animation: float 7s ease-in-out infinite;
-    filter: drop-shadow(0 0 24px rgba(255, 0, 0, 0.25))
-      drop-shadow(0 0 48px rgba(0, 149, 255, 0.15));
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
   .wordmark-wrap {
+    display: grid;
+    justify-items: end;
+    gap: 1.1rem;
     line-height: 1;
   }
 
-  .wordmark {
-    height: 102px;
-    width: auto;
-    display: block;
+  .brand-credit {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding-inline-end: 0.25rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    line-height: 1;
   }
 
-  .tagline {
-    font-size: clamp(1rem, 2.2vw, 1.15rem);
-    color: var(--text-muted);
-    font-weight: 400;
-    line-height: 1.75;
-    max-width: 440px;
+  .brand-credit img {
+    display: block;
+    width: auto;
+    height: 1.05rem;
+  }
+
+  .wordmark {
+    height: auto;
+    width: min(27rem, calc(100vw - 4rem));
+    display: block;
   }
 
   .ctas {
     display: flex;
-    gap: 0.875rem;
-    flex-wrap: wrap;
+    gap: 1.25rem;
+    flex-wrap: nowrap;
     justify-content: center;
-    margin-top: 0.25rem;
+    margin-top: 1.5rem;
   }
 
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.45rem;
+    gap: 0.625rem;
     min-width: 124px;
-    padding: 0.7rem 1.6rem;
+    min-height: 2.75rem;
+    padding: 0.625rem 1.125rem;
     border-radius: 0;
     border: 1px solid transparent;
     background: transparent;
     color: var(--white);
-    font-size: 0.93rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 300;
     font-family: inherit;
     letter-spacing: 0;
     transition:
@@ -234,27 +156,28 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
   }
 
   .btn-docs {
-    border-color: var(--red);
+    background: var(--white);
+    color: var(--bg);
   }
 
   .btn-docs:hover {
-    background: rgba(255, 0, 0, 0.08);
+    background: #e6e6e6;
   }
 
   .btn-github {
-    border-color: var(--blue);
+    background: transparent;
   }
 
   .btn-github:hover {
-    background: rgba(0, 149, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
   }
 
   .meta-badge {
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.22);
+    color: var(--text-muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 300;
     margin-top: 0.25rem;
   }
 
@@ -263,21 +186,20 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 0;
     background: transparent;
-    color: var(--red);
+    color: var(--text-muted);
     cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
-    animation: arrowColor 3s ease-in-out infinite;
+    transition: background 0.2s, color 0.2s;
     flex-shrink: 0;
   }
 
   .scroll-next:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
   }
 
   .scroll-next-arrow {
@@ -290,40 +212,16 @@ const GITHUB_URL = 'https://github.com/RJPhenom/SeinARTSFramework';
     line-height: 1;
   }
 
-  @keyframes arrowColor {
-    0%,
-    100% {
-      color: var(--red);
-    }
-    50% {
-      color: var(--blue);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .bg-glow {
-      opacity: 0.78;
+  @media (max-width: 32rem) {
+    .ctas {
+      gap: 0.5rem;
     }
 
-    .bg-glow::before,
-    .bg-glow::after {
-      animation: none;
-      transform: none;
-      opacity: 0.72;
+    .btn {
+      min-width: 7rem;
+      padding-inline: 0.75rem;
     }
 
-    .scroll-next {
-      transition: background 0.2s ease;
-      animation: none;
-      color: var(--red);
-    }
-
-    .scroll-next-arrow {
-      color: currentColor;
-    }
-  }
-
-  @media (max-width: 768px) {
     .hero {
       padding: calc(var(--nav-h) + 1.25rem) 1.25rem 2.25rem;
     }
